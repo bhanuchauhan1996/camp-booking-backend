@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CampDBModelStoreContainer" CdmEntityContainer="CampDBEntities">
+    <EntitySetMapping Name="BookingDetails">
+      <EntityTypeMapping TypeName="CampDBModel.BookingDetail">
+        <MappingFragment StoreEntitySet="BookingDetail">
+          <ScalarProperty Name="ZIP" ColumnName="ZIP" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+          <ScalarProperty Name="CampId" ColumnName="CampId" />
+          <ScalarProperty Name="TotalDays" ColumnName="TotalDays" />
+          <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+          <ScalarProperty Name="BillAddress" ColumnName="BillAddress" />
+          <ScalarProperty Name="CheckIn" ColumnName="CheckIn" />
+          <ScalarProperty Name="CheckOut" ColumnName="CheckOut" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="BookingNo" ColumnName="BookingNo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Camps">
+      <EntityTypeMapping TypeName="CampDBModel.Camp">
+        <MappingFragment StoreEntitySet="Camp">
+          <ScalarProperty Name="ImageURL" ColumnName="ImageURL" />
+          <ScalarProperty Name="Rating" ColumnName="Rating" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="CampId" ColumnName="CampId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Capacity" ColumnName="Capacity" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="spAddBooking" FunctionName="CampDBModel.Store.spAddBooking" />
+    <FunctionImportMapping FunctionImportName="spSearchCamp" FunctionName="CampDBModel.Store.spSearchCamp">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CampDBModel.spSearchCamp_Result">
+          <ScalarProperty Name="CampId" ColumnName="CampId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Capacity" ColumnName="Capacity" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="CampDBModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="spSearchCam" FunctionName="CampDBModel.Store.spSearchCamp">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CampDBModel.spSearchCamp_Result">
+          <ScalarProperty Name="CampId" ColumnName="CampId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Capacity" ColumnName="Capacity" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spSearch" FunctionName="CampDBModel.Store.spSearchCamp">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CampDBModel.spSearchCamp_Result">
+          <ScalarProperty Name="CampId" ColumnName="CampId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Capacity" ColumnName="Capacity" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Rating" ColumnName="Rating" />
+          <ScalarProperty Name="ImageURL" ColumnName="ImageURL" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CampDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="BookingDetail">
+    <Key>
+      <PropertyRef Name="OrderId" />
+    </Key>
+    <Property Name="OrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CampId" Type="Int32" Nullable="false" />
+    <Property Name="TotalDays" Type="Int32" Nullable="false" />
+    <Property Name="ContactNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="BillAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CheckIn" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="CheckOut" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Amount" Type="Int32" Nullable="false" />
+    <Property Name="BookingNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Camp" Relationship="Self.FK_BookingDetail_Camp" FromRole="BookingDetail" ToRole="Camp" />
+    <Property Name="State" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Country" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ZIP" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Camp">
+    <Key>
+      <PropertyRef Name="CampId" />
+    </Key>
+    <Property Name="CampId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Capacity" Type="Int32" Nullable="false" />
+    <Property Name="Price" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="BookingDetails" Relationship="Self.FK_BookingDetail_Camp" FromRole="Camp" ToRole="BookingDetail" />
+    <Property Name="Location" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Rating" Type="Decimal" Nullable="false" Precision="3" Scale="2" />
+    <Property Name="ImageURL" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_BookingDetail_Camp">
+    <End Role="Camp" Type="Self.Camp" Multiplicity="1" />
+    <End Role="BookingDetail" Type="Self.BookingDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Camp">
+        <PropertyRef Name="CampId" />
+      </Principal>
+      <Dependent Role="BookingDetail">
+        <PropertyRef Name="CampId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CampDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="BookingDetails" EntityType="Self.BookingDetail" />
+    <EntitySet Name="Camps" EntityType="Self.Camp" />
+    <AssociationSet Name="FK_BookingDetail_Camp" Association="Self.FK_BookingDetail_Camp">
+      <End Role="Camp" EntitySet="Camps" />
+      <End Role="BookingDetail" EntitySet="BookingDetails" />
+    </AssociationSet>
+    <FunctionImport Name="spAddBooking">
+      <Parameter Name="CampId" Mode="In" Type="Int32" />
+      <Parameter Name="TotalDays" Mode="In" Type="Int32" />
+      <Parameter Name="ContactNo" Mode="In" Type="String" />
+      <Parameter Name="BillAddress" Mode="In" Type="String" />
+      <Parameter Name="State" Mode="In" Type="String" />
+      <Parameter Name="Country" Mode="In" Type="String" />
+      <Parameter Name="ZIP" Mode="In" Type="String" />
+      <Parameter Name="CheckIn" Mode="In" Type="DateTime" />
+      <Parameter Name="CheckOut" Mode="In" Type="DateTime" />
+      <Parameter Name="Amount" Mode="In" Type="Int32" />
+      <Parameter Name="BookingNO" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spSearchCamp" ReturnType="Collection(CampDBModel.spSearchCamp_Result)">
+      <Parameter Name="ArrivalDate" Mode="In" Type="DateTime" />
+      <Parameter Name="DepartureDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <EntitySet Name="Users" EntityType="CampDBModel.User" />
+    <FunctionImport Name="spSearchCam" ReturnType="Collection(CampDBModel.spSearchCamp_Result)">
+      <Parameter Name="ArrivalDate" Mode="In" Type="DateTime" />
+      <Parameter Name="DepartureDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="spSearch" ReturnType="Collection(CampDBModel.spSearchCamp_Result)">
+      <Parameter Name="ArrivalDate" Mode="In" Type="DateTime" />
+      <Parameter Name="DepartureDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="spSearchCamp_Result">
+    <Property Type="Int32" Name="CampId" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="Capacity" Nullable="false" />
+    <Property Type="Int32" Name="Price" Nullable="false" />
+    <Property Type="String" Name="Location" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Description" Nullable="false" MaxLength="50" />
+    <Property Type="Decimal" Name="Rating" Nullable="false" Precision="3" Scale="2" />
+    <Property Type="String" Name="ImageURL" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+</Schema>
