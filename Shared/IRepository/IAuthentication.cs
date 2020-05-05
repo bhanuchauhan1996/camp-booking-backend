@@ -9,6 +9,12 @@ namespace Shared.IRepository
 {
     public interface IAuthentication
     {
+        /// <summary>
+        /// This method checks the username and password during authentication
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         UserDTO Login(string username, string password);
     }
 }

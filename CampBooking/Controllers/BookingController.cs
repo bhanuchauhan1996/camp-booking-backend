@@ -10,6 +10,9 @@ using System.Web.Http;
 
 namespace CampBooking.Controllers
 {
+    /// <summary>
+    /// This controller contains all the booking related api
+    /// </summary>
     public class BookingController : ApiController
     {
         private IBooking Ibooking;
@@ -22,11 +25,20 @@ namespace CampBooking.Controllers
             Ibooking = new BookingRepo();
         }
 
+        /// <summary>
+        /// Fetch all bookings
+        /// </summary>
+        /// <returns></returns>
         public IList<BookingDTO> GetAllBooking()
         {
             return Ibooking.GetAllBookings();
         }
 
+        /// <summary>
+        /// Get booking by Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public HttpResponseMessage GetBooking(int id)
         {
             BookingDTO bookingDTO = Ibooking.GetBooking(id);
@@ -40,6 +52,11 @@ namespace CampBooking.Controllers
             }
         }
 
+        /// <summary>
+        /// Get booking by booking number
+        /// </summary>
+        /// <param name="bookingNo"></param>
+        /// <returns></returns>
         public HttpResponseMessage GetBookingFromBookingNo(string bookingNo)
         {
             BookingDTO bookingDTO = Ibooking.GetBookingFromBookingNo(bookingNo);
@@ -53,7 +70,11 @@ namespace CampBooking.Controllers
             }
         }
 
-
+        /// <summary>
+        /// Add booking into records
+        /// </summary>
+        /// <param name="bookingDTO"></param>
+        /// <returns></returns>
         public HttpResponseMessage AddBooking([FromBody]BookingDTO bookingDTO)
         {
             try
@@ -70,6 +91,11 @@ namespace CampBooking.Controllers
 
         }
 
+        /// <summary>
+        /// Delete Booking by using id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public HttpResponseMessage DeleteBooking(int id)
         {
             try
@@ -93,6 +119,12 @@ namespace CampBooking.Controllers
 
         }
 
+        /// <summary>
+        /// Update Camp details
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="bookingDTO"></param>
+        /// <returns></returns>
         [System.Web.Http.HttpPut]
         public HttpResponseMessage UpdateCamp(int id, [FromBody]BookingDTO bookingDTO)
         {

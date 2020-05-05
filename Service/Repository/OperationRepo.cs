@@ -19,6 +19,12 @@ namespace Service.Repository
         {
             dBEntities = new CampDBEntities();
         }
+
+        /// <summary>
+        /// Delete booking by using booking number
+        /// </summary>
+        /// <param name="bookingNo"></param>
+        /// <returns></returns>
         public bool DeleteBooking(string bookingNo)
         {
             var entity = dBEntities.BookingDetails.FirstOrDefault(o => o.BookingNo == bookingNo);
@@ -34,6 +40,10 @@ namespace Service.Repository
             }
         }
 
+        /// <summary>
+        /// Fetch the latest booking
+        /// </summary>
+        /// <returns></returns>
         public BookingDTO LatestBooking()
         {
             int id = dBEntities.BookingDetails.Max(x => x.OrderId);
@@ -41,6 +51,12 @@ namespace Service.Repository
             return bookingDTO;
         }
 
+        /// <summary>
+        /// Search Camp between two dates.
+        /// </summary>
+        /// <param name="checkIn"></param>
+        /// <param name="checkOut"></param>
+        /// <returns></returns>
         public IList<CampDTO> SearchCamp(DateTime? checkIn, DateTime? checkOut)
         {
             

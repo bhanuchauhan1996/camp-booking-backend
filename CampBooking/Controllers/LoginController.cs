@@ -22,6 +22,12 @@ namespace CampBooking.Controllers
             authentication = new AuthenticationRepo();
         }
 
+        /// <summary>
+        /// Get user details to verify user exist or not
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public HttpResponseMessage GetUser(string username , string password)
         {
             UserDTO userDTO = authentication.Login(username, password);

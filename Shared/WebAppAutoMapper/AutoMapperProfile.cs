@@ -10,7 +10,9 @@ using System.Threading.Tasks;
 namespace Shared.WebAppAutoMapper
 {
     public class AutoMapperProfile:Profile
-    {
+    {/// <summary>
+    /// Create Map among the class
+    /// </summary>
         public AutoMapperProfile()
         {
             CreateMap<Camp, CampDTO>();

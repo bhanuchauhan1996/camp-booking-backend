@@ -18,12 +18,21 @@ namespace Service.Repository
             dBEntities = new CampDBEntities();
         }
 
+        /// <summary>
+        /// Add camp
+        /// </summary>
+        /// <param name="camp"></param>
         public void AddCamp(CampDTO camp)
         {
             dBEntities.Camps.Add(camp);
             dBEntities.SaveChanges();
         }
 
+        /// <summary>
+        /// Delete camp by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public bool DeleteCamp(int id)
         {
             var entity = dBEntities.Camps.FirstOrDefault(c => c.CampId == id);
@@ -40,6 +49,10 @@ namespace Service.Repository
             
         }
 
+        /// <summary>
+        /// Get all camps
+        /// </summary>
+        /// <returns></returns>
         public IList<CampDTO> GetAllCamps()
         {
             IList<CampDTO> campViewModels = null;
@@ -47,6 +60,11 @@ namespace Service.Repository
             return campViewModels;
         }
 
+        /// <summary>
+        /// Get camp by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public CampDTO GetCamp(int id)
         {
             CampDTO campViewModel = AutoMapper.Mapper.Map<CampDTO>(dBEntities.Camps.FirstOrDefault(myid => myid.CampId == id));
@@ -54,6 +72,12 @@ namespace Service.Repository
             
         }
 
+        /// <summary>
+        /// Update camp Details
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="camp"></param>
+        /// <returns></returns>
         public bool UpdateCamp(int id, CampDTO camp)
         {
             var entity = dBEntities.Camps.FirstOrDefault(c => c.CampId == id);

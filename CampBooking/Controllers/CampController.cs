@@ -13,7 +13,9 @@ using System.Web.Mvc;
 
 namespace CampBooking.Controllers
 {
-    
+    /// <summary>
+    /// This controller contains all the camp related api
+    /// </summary>
     public class CampController : ApiController
     {
         private ICamp Icamp;
@@ -26,13 +28,20 @@ namespace CampBooking.Controllers
             Icamp = new CampRepo();
         }
 
-      //  [BasicAuthentication]
+      /// <summary>
+      /// Get all camps
+      /// </summary>
+      /// <returns></returns>
         public IList<CampDTO> Get()
         {
             return Icamp.GetAllCamps();
         }
 
-      //  [BasicAuthentication]
+      /// <summary>
+      /// Get camp by id
+      /// </summary>
+      /// <param name="id"></param>
+      /// <returns></returns>
         public HttpResponseMessage GetCamp(int id)
         {
             CampDTO campViewModel= Icamp.GetCamp(id);
@@ -46,7 +55,11 @@ namespace CampBooking.Controllers
             }
         }
 
-        
+        /// <summary>
+        /// Add camp 
+        /// </summary>
+        /// <param name="camp"></param>
+        /// <returns></returns>
         public HttpResponseMessage AddCamp([FromBody]CampDTO camp)
         {
             try
@@ -61,7 +74,12 @@ namespace CampBooking.Controllers
             }
             
         }
-       // [BasicAuthentication]
+       
+        /// <summary>
+        /// Delete Camp
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public HttpResponseMessage DeleteCamp(int id)
         {
             try
@@ -85,6 +103,12 @@ namespace CampBooking.Controllers
             
         }
         
+        /// <summary>
+        /// Update Camp
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="camp"></param>
+        /// <returns></returns>
         [System.Web.Http.HttpPut]
         public HttpResponseMessage UpdateCamp(int id,[FromBody]CampDTO camp)
         {

@@ -10,6 +10,9 @@ using System.Web.Http;
 
 namespace CampBooking.Controllers
 {
+    /// <summary>
+    /// This api represent dashboard of application
+    /// </summary>
     public class DashBoardController : ApiController
     {
         private IOperation Ioperation;
@@ -22,6 +25,12 @@ namespace CampBooking.Controllers
             Ioperation = new OperationRepo();
         }
 
+        /// <summary>
+        /// Gell all camp by using dates
+        /// </summary>
+        /// <param name="checkIN"></param>
+        /// <param name="checkOut"></param>
+        /// <returns></returns>
         public IList<CampDTO> GetAllSearchBooking(DateTime? checkIN=null, DateTime? checkOut=null)
         {
             if (checkIN==null)

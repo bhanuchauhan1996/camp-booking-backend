@@ -21,6 +21,11 @@ namespace CampBooking.Controllers
         {
             Ioperation = new OperationRepo();
         }
+
+        /// <summary>
+        /// Api to fetch Latest Booking
+        /// </summary>
+        /// <returns></returns>
         public HttpResponseMessage GetLatestBooking()
         {
             BookingDTO bookingDTO = Ioperation.LatestBooking();
@@ -34,6 +39,11 @@ namespace CampBooking.Controllers
             }
         }
 
+        /// <summary>
+        /// Api to delete the Booking
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public HttpResponseMessage DeleteBooking(string id)
         {
             try

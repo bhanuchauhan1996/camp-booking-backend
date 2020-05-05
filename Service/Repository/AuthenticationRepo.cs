@@ -16,6 +16,12 @@ namespace Service.Repository
         {
             dBEntities = new CampDBEntities();
         }
+        /// <summary>
+        /// Used to check login details of admin.
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public UserDTO  Login(string username, string password)
         {
 
